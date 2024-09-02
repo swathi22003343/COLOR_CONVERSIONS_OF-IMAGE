@@ -35,49 +35,177 @@ Split and Merge RGB Image
 ### Step10:
 Split and merge HSV Image
 
-##### Program:
-### Developed By:
-### Register Number: 
+### Program:
+### Developed By:SWATHI D
+### Register Number:212222230154
+i) Read and display the image
+```
+import cv2
+image=cv2.imread('swathi.jpg',1)
+image = cv2.resize(image, (400, 300))
+cv2.imshow('swathi',image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
 
 
 ## Output:
 
 ### i) Read and display the image
+![Screenshot 2024-09-02 101907](https://github.com/user-attachments/assets/512900c8-90a4-4e2d-b491-cbcef3fc151b)
+
 
 <br>
 <br>
 
 ### ii)Write the image
+```
+cv2.imwrite('b.jpg',image)
+```
+## OUTPUT:
+![Screenshot 2024-09-02 105646](https://github.com/user-attachments/assets/c639b8ac-a799-4c77-a2af-01d5b55af39b)
 
 <br>
 <br>
 
 ### iii)Shape of the Image
+```
+ print(image.shape)
+```
+## OUTPUT:
+![Screenshot 2024-09-02 102345](https://github.com/user-attachments/assets/80fd3d83-7e30-44d0-b9a4-5c48ff10e57c)
 
 <br>
 <br>
 
 ### iv)Access rows and columns
+```
+import random
+image=cv2.resize(image,(400,400))
+for i in range (150,200):
+    for j in range(image.shape[1]):
+        image[i][j]=[random.randint(0,255),
+                     random.randint(0,255),
+                     random.randint(0,255)] 
+cv2.imshow('swathi-1',image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+![Screenshot 2024-09-02 102512](https://github.com/user-attachments/assets/048477fc-fb1a-4ed3-9a4c-9185fe523073)
+
 <br>
 <br>
 
 ### v)Cut and paste portion of image
+```
+image=cv2.imread('swathi.jpg',1)
+image=cv2.resize(image,(400,400))
+tag =image[130:200,110:190]
+image[110:180,120:200] = tag
+cv2.imshow('suji-2',image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
 <br>
 <br>
 
 ### vi) BGR and RGB to HSV and GRAY
+```
+img = cv2.imread('swathi.jpg',1)
+img = cv2.resize(img,(300,200))
+cv2.imshow('Original Image',img)
+
+hsv1 = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+cv2.imshow('BGR2HSV',hsv1)
+
+hsv2 = cv2.cvtColor(img,cv2.COLOR_RGB2HSV)
+cv2.imshow('RGB2HSV',hsv2)
+
+gray1 = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+cv2.imshow('BGR2GRAY',gray1)
+
+gray2 = cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
+cv2.imshow('RGB2GRAY',gray2)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+![Screenshot 2024-09-02 102818](https://github.com/user-attachments/assets/5d7a8c4f-fef0-42eb-bd63-6d24b325e67d)
+![Screenshot 2024-09-02 102832](https://github.com/user-attachments/assets/f139acd6-13ca-422b-a41a-a3167f2445ee)
+![Screenshot 2024-09-02 102913](https://github.com/user-attachments/assets/695c418c-ec84-4a3a-9eee-25d078fd18d4)
+![Screenshot 2024-09-02 102955](https://github.com/user-attachments/assets/a01b4d6e-7e9b-4249-9425-ae4dcd14439f)
+
+
+
+
 <br>
 <br>
 
 ### vii) HSV to RGB and BGR
+```
+img = cv2.imread('photogragh.jpg')
+img = cv2.resize(img,(300,200))
+img = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+cv2.imshow('Original HSV Image',img)
+
+RGB = cv2.cvtColor(img,cv2.COLOR_HSV2RGB)
+cv2.imshow('2HSV2BGR',RGB)
+
+BGR = cv2.cvtColor(img,cv2.COLOR_HSV2BGR)
+cv2.imshow('HSV2RGB',BGR)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+![Screenshot 2024-09-02 103122](https://github.com/user-attachments/assets/3735410a-5ae0-4589-9f74-540dbfb343ee)
+![Screenshot 2024-09-02 103111](https://github.com/user-attachments/assets/d81f571e-70c1-4b52-b4dd-0cd5e6a1cd26)
+![Screenshot 2024-09-02 103101](https://github.com/user-attachments/assets/91b1c4ed-3f5f-40fd-ae66-386977e79584)
+
+
+
+
 <br>
 <br>
 
 ### viii) RGB and BGR to YCrCb
+```
+img = cv2.imread('photogragh.jpg')
+img = cv2.resize(img,(300,200))
+cv2.imshow('Original RGB Image',img)
+
+YCrCb1 = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
+cv2.imshow('RGB-2-YCrCb',YCrCb1)
+
+YCrCb2 = cv2.cvtColor(img, cv2.COLOR_RGB2YCrCb)
+cv2.imshow('BGR-2-YCrCb',YCrCb2)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+![Screenshot 2024-09-02 103205](https://github.com/user-attachments/assets/d1ca0bf9-ead4-49b9-8aa5-9b83b458a19c)
+![Screenshot 2024-09-02 103245](https://github.com/user-attachments/assets/291f776b-95d2-44a9-83d9-d71b5417fbbb)
+![Screenshot 2024-09-02 103232](https://github.com/user-attachments/assets/c2332a6e-f40c-4f12-96e0-cfd77f350a40)
+
+
+
 <br>
 <br>
 
 ### ix) Split and merge RGB Image
+```
+img = cv2.imread('photogragh.jpg',1)
+img = cv2.resize(img,(300,200))
+R = img[:,:,2]
+G = img[:,:,1]
+B = img[:,:,0]
+cv2.imshow('R-Channel',R)
+cv2.imshow('G-Channel',G)
+cv2.imshow('B-Channel',B)
+merged = cv2.merge((B,G,R))
+cv2.imshow('Merged RGB image',merged)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
 <br>
 <br>
 
