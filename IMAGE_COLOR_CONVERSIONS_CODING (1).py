@@ -1,209 +1,248 @@
-
-
 # import cv2
 # from google.colab.patches import cv2_imshow
 
 # In[ ]:
 
 
-#read and diplay image
-#Type ur code here
+#1.	Read and Display an Image
+import cv2
+image=cv2.imread('forest.png',1)
+cv2.imshow('Image Window', image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# In[ ]:
+
+
+#2.	Draw Shapes and Add Text
+(1) Draw a line from the top-left to the bottom-right of the image.
+
+import cv2
+img = cv2.imread("forest.png")
+res = cv2.line(img, (0, 0), (img.shape[1], img.shape[0]), (200, 100, 205), 10)
+cv2.imshow('Image Window', res)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+(2) Draw a circle at the center of the image.
+
+import cv2
+
+# Load the image
+img = cv2.imread("forest.png")
+
+# Get the dimensions of the image
+height, width, _ = img.shape
+
+# Calculate the center of the image
+center_coordinates = (width // 2, height // 2)
+
+# Draw a circle at the center of the image
+res = cv2.circle(img, center_coordinates, 150, (255, 0, 0), 10)
+
+# Display the image with the circle
+cv2.imshow('Image Window', res)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+(3) Draw a rectangle around a specific region of interest in the image.
+
+import cv2
+
+# Load the image using the correct path
+img = cv2.imread("forest.png")
+
+# Define the start and stop points of the rectangle (Region of Interest)
+# These coordinates should encapsulate the region you want to highlight
+start = (150, 100)  # top-left corner of the rectangle
+stop = (400, 300)   # bottom-right corner of the rectangle
+
+# Define the color and thickness of the rectangle
+color = (100, 255, 100)  # Green rectangle
+thickness = 10           # Thickness of the rectangle
+
+# Draw the rectangle on the image
+res_img = cv2.rectangle(img, start, stop, color, thickness)
+
+# Display the resulting image with the rectangle
+cv2.imshow('Image Window', res_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+(4) Add the text "OpenCV Drawing" at the top-left corner of the image.
+
+import cv2
+
+# Load the image
+img = cv2.imread("forest.png")
+
+# Define the text to be added and its position
+text = "OpenCV Drawing"
+position = (10, 50)  # Positioning the text at the top-left corner
+
+# Set the font, scale, color, and thickness of the text
+font = cv2.FONT_HERSHEY_SIMPLEX
+font_scale = 1
+color = (255, 255, 255)  # White color
+thickness = 2
+
+# Add the text to the image
+res = cv2.putText(img, text, position, font, font_scale, color, thickness, cv2.LINE_AA)
+
+# Display the image with the text
+cv2.imshow('Image Window', res)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 
 # In[ ]:
 
 
-#WRITE AN IMAGE
-#Type ur code here
+#3.Image Color Conversion
 
-# Save the original image to a file
-original_output_path = "image path"
-#Type ur code here
-cv2.imwrite(original_output_path, image)
-print(f"Original image saved to: {original_output_path}")
+(1) Convert the image from RGB to HSV and display it
 
-# Read the saved image
-#Type ur code here
+import cv2
+img = cv2.imread('forest.png',1)
+img = cv2.resize(img,(300,200))
+cv2.imshow('Original Image',img)
+hsv2 = cv2.cvtColor(img,cv2.COLOR_RGB2HSV)
+cv2.imshow('RGB2HSV',hsv2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
-# Display the saved image
-#Type ur code here
+(2) Convert the image from RGB to GRAY and display it.
 
-# Save the saved image to a new file
-#Type ur code here
-cv2.imwrite(new_output_path, saved_image)
-print(f"Saved image saved to: {new_output_path}")
+import cv2
+img = cv2.imread('forest.png',1)
+img = cv2.resize(img,(300,200))
+cv2.imshow('Original Image',img)
+gray2 = cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
+cv2.imshow('RGB2GRAY',gray2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
+(3) Convert the image from RGB to YCrCb and display it.
+
+import cv2
+img = cv2.imread('forest.png',1)
+img = cv2.resize(img,(300,200))
+cv2.imshow('Original Image',img)
+YCrCb1 = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
+cv2.imshow('RGB-2-YCrCb',YCrCb1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+(4) Convert the HSV image back to RGB and display it.
+
+import cv2
+img = cv2.imread('forest.png',1)
+img = cv2.resize(img,(300,200))
+cv2.imshow('Original Image',img)
+BGR = cv2.cvtColor(img,cv2.COLOR_HSV2BGR)
+cv2.imshow('HSV2RGB',BGR)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 # In[ ]:
 
+#4.Access and Manipulate Image Pixels
 
-#ACCESSING ROWS AND COLUMNS
-#Type ur code here
-# Get the shape of the image (rows, columns, channels)
+import cv2
 
-print(f"Image Shape: Rows={rows}, Columns={columns}, Channels={channels}")
+# Load and resize the image
+img = cv2.imread('forest.png', 1)
+img = cv2.resize(img, (300, 200))
 
-# Assign random values to pixels in the first row and first column
-                                                                 # Random values for the first row
-image[:, 0] = np.random.randint(0, 256, size=(rows, channels))  # Random values for the first column
-#Type ur code here
+# Show the original image
+cv2.imshow('Original Image', img)
+
+(1) Access and print the value of the pixel at coordinates (100, 100)
+pixel_value = img[100, 100]
+print(f"Pixel value at (100, 100): {pixel_value}")
+
+(2) Modify the color of the pixel at (199, 199) to white
+img[199, 199] = [255, 255, 255]  # Setting the pixel value to white (BGR)
+
 # Display the modified image
-#Type ur code here
+cv2.imshow('Modified Image', img)
 
+# Wait for a key press and close the windows
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
-# In[ ]:
-
-
-#Cut and paste the image
-
-#Type ur code here
-# Display the original image
-
-#Type ur code here
-# Get the shape of the image (rows, columns, channels)
-#Type ur code here
-
-# Define the region to cut (example: top-left corner, width=100, height=100)
-cut_region = image[0:100, 0:100]
-
-# Paste the cut region back onto the image (example: paste at (200, 200))
-image[] = cut_region
-#Display the modified image
-#Type ur code here
 
 
 # In[ ]:
 
+#5.Image Resizing
 
-#######COLOR CONVERSION
-##Convert BGR and RGB to HSV and GRAY
-#Type ur code here
-# Convert BGR to RGB
-image_rgb = (image_bgr, cv2.COLOR_BGR2RGB)
-
-# Convert BGR to HSV
-image_hsv_bgr = cv2.cvtColor(image_bgr, )
-
-# Convert RGB to HSV
-#Type ur code here
-
-# Convert BGR to Grayscale
-#Type ur code here
-
-# Convert RGB to Grayscale
-#Type ur code here
-
-# Display the original BGR image
-#Type ur code here
-# Display the HSV image (BGR and RGB converted)
-#Type ur code here
-# Display the Grayscale image (BGR and RGB converted)
-print("BGR TO GRAY")
-cv2_imshow(image_gray_bgr)
-print("RGB TO GRAY")
-cv2_imshow(image_gray_rgb)
+width=700
+height=600
+half_width=300
+half_height=400
+resized_img = cv2.resize(image, (300, 400))
+cv2.imshow('Original',image)
+cv2.imshow('resized',resized_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 
 # In[ ]:
 
+#6.	Image Cropping
+# In[ ]:
+import cv2
 
-##Convert HSV to RGB and BGR
-#Type ur code here
-# Convert BGR to HSV
-#Type ur code here
-# Convert HSV to RGB
-#Type ur code here
-# Convert HSV to BGR
-image_bgr_hsv = cv2.cvtColor(image_hsv, cv2.COLOR_HSV2BGR)
+# Load the image
+image1=cv2.imread('cat.jpg',1)
 
-# Display the original BGR image
-#Type ur code here
-cv2_imshow(image_bgr)
+# Define the starting point and size of the ROI
+x, y = 50, 50
+width, height = 100, 100
 
+# Crop the ROI
+roi = image1[y:y + height, x:x + width]
+
+# Display the cropped ROI
+cv2.imshow('Cropped Image', roi)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+#7.Image Flipping
+
+(1) Flip the original image horizontally and display it.
+
+import cv2
+img = cv2.imread("forest.png")
+img = cv2.resize(img,(300,200))
+res=cv2.rotate(img,cv2.ROTATE_180)
+cv2.imshow('Original',img)
+cv2.imshow('Image Window', res)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+(2) Flip the original image vertically and display it.
+
+import cv2
+img = cv2.imread("forest.png")
+img = cv2.resize(img,(300,200))
+res=cv2.rotate(img,cv2.ROTATE_90_CLOCKWISE)
 # Display the HSV image
-#Type ur code here
-cv2_imshow(image_hsv)
+cv2.imshow('Original',img)
+cv2.imshow('Image Window', res)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
-# Display the RGB image (HSV to RGB)
-print("HSV TO RGB")
-#Type ur code here
-
-# Display the BGR image (HSV to BGR)
-
-#Type ur code here
-
-
+   
 # In[ ]:
 
+#8.Write and Save the Modified Image
 
-##Convert RGB and BGR to YCrCb
-#Type ur code here
-
-# Convert BGR to YCrCb
-image_ycrcb_bgr = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2YCrCb)
-
-# Convert RGB to YCrCb
-#Type ur code here
-                                                                # Convert BGR to RGB
-image_ycrcb_rgb = cv2.cvtColor(image_rgb, cv2.COLOR_RGB2YCrCb)
-
-# Display the original BGR image
-#Type ur code here
-
-# Display the YCrCb image (BGR to YCrCb)
-#Type ur code here
-
-# Display the YCrCb image (RGB to YCrCb)
-
-#Type ur code here
-
-
+import cv2
+img = cv2.imread("forest.png")
+img = cv2.resize(img,(300,200))
+cv2.imwrite('pet.jpg',img)
+   
 # In[ ]:
-
-
-#Split and Merge RGB Image
-
-
-## Split the RGB channels
-blue_channel, green_channel, red_channel = cv2.split(image_bgr)
-
-# Display the original BGR image
-#Type ur code here
-
-# Display the individual RGB channels
-print("BLUE CHANNEL")
-cv2_imshow(blue_channel)
-#Type ur code here
-
-# Merge the RGB channels back together
-
-#Type ur code here
-# Display the merged image
-#Type ur code here
-
-
-# In[ ]:
-
-
-##Split and merge HSV Image
-#Type ur code here
-# Convert BGR to HSV
-#Type ur code here
-
-# Split the HSV channels
-#Type ur code here
-# Display the original BGR image and the converted HSV image
-print("ORIGINAL IMAGE")
-cv2_imshow(image_bgr)
-print("HSV IMAGE")
-cv2_imshow(image_hsv)
-
-# Display the individual HSV channels
-#Type ur code here
-
-
-# In[ ]:
-
-
-
-
